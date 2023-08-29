@@ -1,0 +1,10 @@
+# Define the goal
+int16 point_count
+float32[] robot_goal
+---
+# Define the result
+float32[] robot_pose
+---
+# Define a feedback message
+int16 point_num
+float32[] robot_now

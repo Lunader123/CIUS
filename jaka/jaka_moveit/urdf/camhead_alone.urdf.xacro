@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="camhead" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link
+    name="cam_base_link">
+    <inertial>
+      <origin
+        xyz="0.0080061 -0.0015244 0.027175"
+        rpy="0 0 0" />
+      <mass
+        value="0.071566" />
+      <inertia
+        ixx="1.1637E-05"
+        ixy="1.1941E-15"
+        ixz="1.7823E-09"
+        iyy="1.8408E-05"
+        iyz="4.1144E-07"
+        izz="1.6521E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camhead/meshes/cam_base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camhead/meshes/cam_base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="cam_link_1">
+    <inertial>
+      <origin
+        xyz="0.00051383 -0.0075553 -0.0031082"
+        rpy="0 0 0" />
+      <mass
+        value="0.063261" />
+      <inertia
+        ixx="8.7344E-06"
+        ixy="1.7823E-09"
+        ixz="-1.4423E-14"
+        iyy="1.0704E-05"
+        iyz="-4.1144E-07"
+        izz="1.5531E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camhead/meshes/cam_link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.89412 0.91373 0.92941 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camhead/meshes/cam_link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="cam_joint_1"
+    type="continuous">
+    <origin
+      xyz="0.0005 0.0001317 0.077"
+      rpy="0 0 0" />
+    <parent
+      link="cam_base_link" />
+    <child
+      link="cam_link_1" />
+    <axis
+      xyz="0 0 1" />
+    <limit effort="1000" lower="-3.14159265358" upper="3.14159265358" velocity="0.5"/>
+  </joint>
+<transmission name="cam_joint_1_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="cam_joint_1_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="cam_joint_1">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+  <link
+    name="cam_link_2">
+    <inertial>
+      <origin
+        xyz="-0.027603 4.6404E-17 0.016075"
+        rpy="0 0 0" />
+      <mass
+        value="0.029496" />
+      <inertia
+        ixx="1.5198E-05"
+        ixy="1.4672E-20"
+        ixz="-5.571E-20"
+        iyy="2.2438E-05"
+        iyz="1.5789E-21"
+        izz="9.8551E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camhead/meshes/cam_link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://camhead/meshes/cam_link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="cam_joint_2"
+    type="continuous">
+    <origin
+      xyz="0.01 0 0"
+      rpy="1.5708 1.5708 0" />
+    <parent
+      link="cam_link_1" />
+    <child
+      link="cam_link_2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit effort="1000" lower="-3.14159265358" upper="3.14159265358" velocity="0.5"/>
+  </joint>
+<transmission name="cam_joint_2_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <actuator name="cam_joint_2_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+    <joint name="cam_joint_2">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+  </transmission>
+
+  <xacro:include filename="$(find realsense2_description)/urdf/_d435.urdf.xacro" />
+
+  <xacro:sensor_d435 name="camera" topics_ns="camera" parent="cam_link_2" publish_pointcloud="true" ref_link="camera_link">
+      <origin
+      xyz="-0.064577 -0.012274 0.0096665"
+      rpy="1.5708 0 3.1416" />
+  </xacro:sensor_d435>  
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/camhead</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>

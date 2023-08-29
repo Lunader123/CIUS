@@ -1,0 +1,25 @@
+<launch>
+
+    <!-- Launch Gazebo  -->
+    <include file="$(find jaka_gazebo)/launch/arm_world.launch" />
+
+    <!-- ros_control arm launch file -->
+    <include file="$(find jaka_gazebo)/launch/arm_gazebo_states.launch" />   
+
+    <!-- ros_control trajectory control dof arm launch file -->
+    <include file="$(find jaka_gazebo)/launch/arm_trajectory_controller.launch" />
+    
+<!-- <group ns="jaka"> -->
+    <!-- moveit launch file -->
+
+    <include file="$(find jaka_moveit)/launch/moveit_planning_execution.launch" /> 
+
+    <node pkg="tf" type="static_transform_publisher" name = "faketf_publish"
+          args="0 0 -0.15 0 0 0 1 link_3 link_3_fake 100" />
+    <node pkg="tf" type="static_transform_publisher" name = "faketf_publish2"
+          args="0 0 -0.15 0 0 0 1 link_2 link_2_fake 100" />
+    <node pkg="tf" type="static_transform_publisher" name = "faketf_publish3"
+          args="0 0 0.115 0 0 0 1 link_4 link_4_fake 100" />
+          
+<!-- </group> -->
+</launch>

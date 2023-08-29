@@ -1,0 +1,24 @@
+<launch>
+
+      <!-- Launch Gazebo  -->
+      <include file="$(find jaka_gazebo)/launch/arm_world.launch" />
+
+      <!-- ros_control arm launch file -->
+      <include file="$(find jaka_gazebo)/launch/arm_gazebo_controller.launch" />  
+
+      <include file="$(find jaka_moveit)/launch/moveit_planning_execution.launch" /> 
+
+      <node pkg="tf" type="static_transform_publisher" name = "faketf_publish"
+            args="0 0 -0.15 0 0 0 1 link_3 link_3_fake 100" />
+      <node pkg="tf" type="static_transform_publisher" name = "faketf_publish2"
+            args="0 0 -0.15 0 0 0 1 link_2 link_2_fake 100" />
+      <node pkg="tf" type="static_transform_publisher" name = "faketf_publish3"
+            args="0 0 0.115 0 0 0 1 link_4 link_4_fake 100" />
+          
+      <rosparam file="$(find jaka_gazebo)/config/arm_cam_joint.yaml" command="load"/>
+      <node name="joint_controller_spawner2" pkg="controller_manager" type="spawner" respawn="false"
+      output="screen" ns="/jaka" args="cam_joint1_position_controller
+                                          cam_joint2_position_controller" />
+
+<!-- </group> -->
+</launch>

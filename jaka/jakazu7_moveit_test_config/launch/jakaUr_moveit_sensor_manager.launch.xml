@@ -1,0 +1,7 @@
+<launch>
+   <!-- <param name="camera_link" type="string" value="camera_depth_optical_frame" />  -->
+   <param name="octomap_frame" type="string" value="world" />
+   <param name="octomap_resolution" type="double" value="0.01" />                           
+   <param name="max_range" type="double"  value="5.0" />    
+   <rosparam command="load" file="$(find  jakazu7_moveit_test_config)/config/sensors_3d.yaml" /> 
+</launch>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot name="jaka_with_cam" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find camhead)/urdf/camhead_alone.urdf.xacro" />
+  <xacro:include filename="$(find Zu7)/urdf/jaka_alone.urdf.xacro" />
+   
+   <link name="world">
+      <origin rpy="0 0 0" xyz="0 0 -0.2"/>
+  </link>
+  <link name="base">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.5"/>
+      <geometry>
+        <box size="1 2 1"/>
+      </geometry>
+      <material name="Residential">
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.5"/>
+      <geometry>
+        <box size="1 2 1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+      <mass value="10.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.001" iyy="0.0" iyz="0.0" izz="0.001"/>
+    </inertial>
+  </link>
+    <joint name="base_to_world" type="fixed">
+    <parent link="world"/>
+    <child link="base"/>
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>
+  </joint>
+  <joint name="fixed_cam" type="fixed">
+    <parent link="world"/>
+  <child link="cam_base_link"/>
+  <origin rpy="0.0 0.0 0.0" xyz="0.0 -0.15 1"/>
+  </joint>
+  <joint name="fixed_jaka" type="fixed">
+    <parent link="world"/>
+  <child link="base_link"/>
+  <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 1"/>
+  </joint>
+   <gazebo reference="base">
+     <material>Gazebo/Residential</material>
+     <turnGravityOff>false</turnGravityOff>
+ </gazebo>
+</robot>

@@ -1,0 +1,10 @@
+<launch>
+
+    <rosparam file="$(find jakazu7_moveit_test_config)/config/trajectory_control.yaml" command="load"/>
+    <!-- <include file="$(find jakazu7_moveit_test_config)/launch/arm_trajectory_controller.launch" /> -->
+<!-- <group ns="/jaka"> -->
+    <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+          output="screen" ns="/jaka" args="arm_joint_controller "/>
+    <!-- <include file="$(find jakazu7_moveit_test_config)/launch/arm_trajectory_controller.launch" /> -->
+<!-- </group> -->
+</launch>

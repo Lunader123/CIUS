@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+<!--生成盒子-->
+	<include file="$(find jaka_gazebo)/launch/spwan_xacro.launch">
+
+        <arg name="x" default="-0.85"/>
+        <arg name="y" default="-1.3"/>
+        <arg name="z" default="1.3"/>
+		<arg name="urdf_robot_file" value="$(find Zu7)/urdf/box.urdf"/>
+		<arg name="robot_name" value="my_box"/>
+
+	</include>
+
+</launch>

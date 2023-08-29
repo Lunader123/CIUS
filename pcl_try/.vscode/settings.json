@@ -1,0 +1,12 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/j/camhead_ws_new/devel/lib/python2.7/dist-packages",
+        "/home/j/realsense_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/melodic/lib/python2.7/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/j/camhead_ws_new/devel/lib/python2.7/dist-packages",
+        "/home/j/realsense_ws/devel/lib/python2.7/dist-packages",
+        "/opt/ros/melodic/lib/python2.7/dist-packages"
+    ]
+}

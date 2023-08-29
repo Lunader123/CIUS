@@ -1,0 +1,23 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/ros/melodic/include/**",
+                "/usr/include/pcl-1.8",
+                "/usr/include/eigen3"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerArgs": [
+                "${workspaceFolder}/**",
+                "/opt/ros/melodic/include/**"
+            ]
+        }
+    ],
+    "version": 4
+}

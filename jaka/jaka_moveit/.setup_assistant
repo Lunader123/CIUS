@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: Zu7
+    relative_path: urdf/jaka.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/jaka_with_cam.srdf
+  CONFIG:
+    author_name: jiadong
+    author_email: jd_lu_sdu@126.com
+    generated_timestamp: 1679571915

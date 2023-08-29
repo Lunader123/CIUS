@@ -1,0 +1,28 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/j/camhead_ws_new/devel/include/**",
+        "/home/j/catkin_ws/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/j/camhead_ws_new/src/jaka/industrial_trajectory_filters/include/**",
+        "/home/j/camhead_ws_new/src/jaka/jaka_moveit_action/include/**",
+        "/home/j/RAF_use/src/raf/include/**",
+        "/home/j/camhead_ws_new/src/realsense-ros/realsense2_camera/include/**",
+        "/home/j/camhead_ws_new/src/realsense_gazebo_plugin/include/**",
+        "/home/j/RAF_use/src/turtlebot3_gazebo/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

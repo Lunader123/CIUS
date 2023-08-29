@@ -1,0 +1,8 @@
+<launch>
+  <!-- send jaka urdf to param server -->
+  <group>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find Zu7)/urdf/jaka.urdf.xacro'" />
+  </group>
+      <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+</launch>

@@ -1,0 +1,27 @@
+<launch>
+    <!-- Launch Gazebo  -->
+    <include file="$(find cam_gazebo)/launch/arm_world.launch" />
+
+    <!-- ros_control arm launch file -->
+    <include file="$(find cam_gazebo)/launch/united_gazebo_states.launch" />   
+
+    <!-- ros_control trajectory control dof arm launch file -->
+    <include file="$(find cam_gazebo)/launch/arm_trajectory_controller.launch" />
+    <include file="$(find jakazu7_moveit_test_config)/launch/arm_trajectory_controller.launch" />
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="jaka2base_boardcast" args="0 0 -0.8 0 0 0 1 world base_link 100"/> -->
+    <!-- <node pkg="tf" type="static_transform_publisher" name="bottom2base_boardcast" args="0 0 -0.8 0 0 0 1 world bottom_link 100"/> -->
+    <!-- <node pkg="tf" type="static_transform_publisher" name="cam2base_boardcast" args="0 -0.15 -0.8 0 0 0 1 world cam_base_link 100"/> -->
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="to_jaka" args="0 0 0.8 0 0 0 1 world jaka/world" /> -->
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="to_camera" args="0 -0.15 0.8 0 0 0 1 world camhead/world" /> -->
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="jaka_to_camera" args="0 -0.15 0 0 0 0 1 jaka/base_link camhead/cam_base_link" /> -->
+
+<group ns="camhead">
+    <!-- moveit launch file -->
+    <include file="$(find cam_moveit)/launch/moveit_planning_execution.launch" />
+</group>
+<group ns="jaka">
+    <!-- moveit launch file -->
+    <include file="$(find jakazu7_moveit_test_config)/launch/moveit_planning_execution.launch" />
+</group>
+</launch>

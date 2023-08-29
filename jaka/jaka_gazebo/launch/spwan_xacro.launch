@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+	
+	<arg name="x" default="-1.7"/>
+	<arg name="y" default="-0.3"/>
+	<arg name="z" default="1.2"/>
+
+	<arg name="urdf_robot_file" default=""/>
+	<arg name="robot_name" default=""/>
+
+	<param name="box_description" command="$(find xacro)/xacro '$(arg urdf_robot_file)' roboname:='$(arg robot_name)'" />
+
+	<node name="spawn_box_model" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -model $(arg robot_name) -param box_description"/>
+
+</launch>

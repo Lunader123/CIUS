@@ -1,0 +1,29 @@
+<launch>
+    <!-- 将关节控制器的配置参数加载到参数服务器中 -->
+    <rosparam file="$(find cam_gazebo)/config/united_gazebo_joint_states.yaml" command="load"/>
+
+    <!-- 载入pid参数，避免报错-->
+    <!-- <rosparam file="$(find jakazu7_moveit_test_config)/config/pid_pub.yaml" command="load"/> -->
+<group ns="camhead">
+    <node name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+          output="screen" ns="/camhead" args="joint_state_controller --namespace=/camhead" />
+
+    <!-- 运行robot_state_publisher节点，发布tf  -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen">
+        <!-- <param name="tf_prefix" value="camhead"/> -->
+        <remap from="/joint_states" to="/camhead/joint_states" />
+    </node>
+</group>
+<group ns="jaka">
+    <node name="joint_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+          output="screen" ns="/jaka" args="joint_state_controller --namespace=/jaka" />
+
+    <!-- 运行robot_state_publisher节点，发布tf  -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+        respawn="false" output="screen">
+        <!-- <param name="tf_prefix" value="jaka"/> -->
+        <remap from="/joint_states" to="/jaka/joint_states" />
+    </node>
+</group>
+</launch>

@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+
+
+<robot name="box">
+
+
+    <link name="box_base_link">
+
+      <collision>
+
+       <origin xyz="0 0 0" rpy="0 0 0"/>  
+
+       <geometry>
+
+        <box size="0.2 0.2 0.2"/>
+      </geometry>
+    </collision>
+
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.2 0.2 0.2"/>   
+      </geometry>
+    </visual>
+  </link>
+  
+
+  <joint name="inertial_joint" type="fixed">
+    <parent link="box_base_link"/>
+    <child link="main_mass"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="main_mass" type="fixed">
+   <parent link="inertial_joint"/>
+
+   <inertial>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <mass value="10"/>  
+    <inertia
+      ixx="1.6666"  ixy="0.000000" ixz="0.000000"
+      iyy="1.6666" iyz="0.000000"
+      izz="1.6666"/>
+    </inertial>
+  </link>
+</robot>
